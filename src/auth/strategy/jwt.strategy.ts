@@ -8,11 +8,11 @@ import { AuthPayload } from '../interface/auth-payload.interface';
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(
     private readonly authService: AuthService,
-    private configService: ConfigService,
+    // private configService: ConfigService,
   ) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey: configService.get<string>('1993'),
+      secretOrKey: '1993',
     });
   }
 
