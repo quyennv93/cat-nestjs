@@ -45,7 +45,7 @@ export class CatService {
   async findOne(id: number): Promise<Cat> {
     return await this.catRepo.findOne({
       where: { id },
-      relations: ['owner'],
+      relations: ['owner', 'foods'],
     });
   }
 

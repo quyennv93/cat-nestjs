@@ -12,5 +12,5 @@ export class CreateAccountDto {
 
   @ApiProperty({ enum: EnumRole, default: EnumRole.USER })
   @IsNotEmpty()
-  urole: EnumRole;
+  role: EnumRole;
 }

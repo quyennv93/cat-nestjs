@@ -5,11 +5,18 @@ import { AuthModule } from './auth/auth.module';
 import { CatModule } from './cat/cat.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { FoodModule } from './food/food.module';
+import { MulterModule } from '@nestjs/platform-express';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
     AuthModule,
     CatModule,
+    AuthModule,
+    MulterModule.register({
+      dest: './upload',
+    }),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -20,6 +27,7 @@ import { FoodModule } from './food/food.module';
       username: 'root',
       password: '123456',
     }),
+    ServeStaticModule.forRoot({ rootPath: join(__dirname, '..', 'upload') }),
     FoodModule,
   ],
   controllers: [AppController],

@@ -9,7 +9,7 @@ export class Food {
   @Column('varchar')
   name: string;
 
-  @Column('float', { default: 0, unsinged: true })
+  @Column('float', { unsigned: true, default: 0 })
   minAge: number;
 
   @ManyToMany(() => Cat, (cat) => cat.foods, {

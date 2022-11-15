@@ -76,6 +76,17 @@ export class CatController {
     return this.catService.findByAccount(id);
   }
 
+  @Post('feed/:id')
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  async feed(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() { foods }: { foods: number[] },
+    @CurrentAccount() by: Account,
+  ) {
+    return await this.catService.feed(id, foods, by);
+  }
+
   @Post('file/:id')
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
