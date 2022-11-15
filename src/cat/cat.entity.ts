@@ -1,6 +1,14 @@
 import { Account } from 'src/auth/account.entity';
 import { EnumCatGender } from 'src/common/enums/cat.gender.enum';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Food } from 'src/food/food.entity';
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity('cat')
 export class Cat {
@@ -25,4 +33,10 @@ export class Cat {
     onDelete: 'CASCADE',
   })
   owner: Account;
+
+  @ManyToMany(() => Food, (food) => food.cats, {
+    cascade: true,
+  })
+  @JoinTable({ name: 'cat_food' })
+  foods: Food[];
 }

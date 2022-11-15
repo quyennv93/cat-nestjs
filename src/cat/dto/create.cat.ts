@@ -5,7 +5,7 @@ export class CreateCatDTo {
   @ApiProperty()
   name: string;
   @ApiProperty({ enum: EnumCatGender, default: EnumCatGender.MALE })
-  gene: EnumCatGender;
+  gender: EnumCatGender;
   @ApiProperty()
   age: number;
 }
